@@ -7,6 +7,8 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="./Themes/ContactCard.Xaml"/>
+                <ResourceDictionary Source="./Themes/ChatItem.Xaml"/>
+                <ResourceDictionary Source="./Themes/MessageBox.Xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
          

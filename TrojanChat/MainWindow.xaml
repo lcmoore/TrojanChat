@@ -59,21 +59,72 @@
                 <RowDefinition Height="60"/>
             </Grid.RowDefinitions>
 
-            <Label Content="Friends"
+            <Label Content="Chats"
                    VerticalAlignment="Center"
                    FontWeight="Medium"
                    Foreground="Black"
                    Margin="8,0,0,0"/>
             <ListView ItemsSource="{Binding Contacts}"
+                      SelectedItem="{Binding SelectedContact}"
                       Background="Transparent"
                       BorderThickness="0"
                       Grid.Row="1"
                       ItemContainerStyle="{StaticResource ContactCard}"/>
+            <StackPanel Grid.Row="2" Orientation="Horizontal" Background="#FFCC00">
+                <Border CornerRadius="25" Width="30" Height="30" Background="LightGoldenrodYellow" Margin="18,0,0,0"/>
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center" >
+                    <Label Content="Username" Foreground="Black" FontWeight="SemiBold" Margin="0,0,0,-13"/>
+                    <Label Content="Custom Status" Foreground="Black" FontWeight="Medium" FontSize="10" />
+
+                </StackPanel>
+
+            </StackPanel>
 
 
 
 
         </Grid>
-        
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+                <RowDefinition Height="70"/>
+            </Grid.RowDefinitions>
+
+            <Border>
+                <Grid HorizontalAlignment="Stretch" Margin="8">
+                    <Label Content="Some sort of header can go here" Foreground="white" FontWeight="Bold" Margin="5,0,5,0"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <!--<Image Width="20" Height="20" RenderOptions.BitmapScalingMode="Fant"
+                               Margin="5,0,5,0"
+                               Source=""/>-->
+                    </StackPanel>
+
+                </Grid>
+            </Border>
+            <ListView ItemsSource="{Binding SelectedContact.MessageHistory}" 
+                      Background="Transparent"
+                      BorderThickness="0"
+                      ItemContainerStyle="{StaticResource ChatItem}"
+                      Margin="8,0,0,0"
+                      Grid.Row="1"/>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="90"/>
+                </Grid.ColumnDefinitions>
+                <TextBox Grid.Row="1"
+                         Height="50"
+                         Text="Message @Username"
+                         Style="{StaticResource MessageBox}"
+                         Grid.ColumnSpan="2"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1" Margin="0,0,16,0" >
+                    <!--<Image Source="./Icons/plus.png" RenderOptions.BitmapScalingMode="fant"/>-->
+
+                </StackPanel>
+
+
+            </Grid>
+        </Grid>
     </Grid>
 </Window>
