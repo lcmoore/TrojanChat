@@ -57,26 +57,58 @@
                 <RowDefinition Height="50"/>
                 <RowDefinition/>
                 <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
             </Grid.RowDefinitions>
 
-            <Label Content="Chats"
+            <Label Content="Friends"
                    VerticalAlignment="Center"
                    FontWeight="Medium"
-                   Foreground="Black"
+                   Foreground="White"
                    Margin="8,0,0,0"/>
+            <!--<TextBlock Text="{Binding Uuid}"/>-->
             <ListView ItemsSource="{Binding Contacts}"
                       SelectedItem="{Binding SelectedContact}"
                       Background="Transparent"
                       BorderThickness="0"
                       Grid.Row="1"
                       ItemContainerStyle="{StaticResource ContactCard}"/>
-            <StackPanel Grid.Row="2" Orientation="Horizontal" Background="#FFCC00">
-                <Border CornerRadius="25" Width="30" Height="30" Background="LightGoldenrodYellow" Margin="18,0,0,0"/>
-                <StackPanel Orientation="Vertical" VerticalAlignment="Center" >
-                    <Label Content="Username" Foreground="Black" FontWeight="SemiBold" Margin="0,0,0,-13"/>
-                    <Label Content="Custom Status" Foreground="Black" FontWeight="Medium" FontSize="10" />
+            <StackPanel Grid.Row="2" Orientation="Vertical"  Background="#FFCC00">
+                <!--<Border CornerRadius="25" Width="30" Height="30" Background="LightGoldenrodYellow" Margin="18,0,0,0"/>-->
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="center" >
+                    <!--<Label Content="Username" Foreground="Black" FontWeight="SemiBold" Margin="0,0,0,-13"/>
+                    <Label Content="Custom Status" Foreground="Black" FontWeight="Medium" FontSize="10" />-->
+                    <TextBox Text="{Binding Username}" FontWeight="Light" Width="100"/>
+                    <TextBox Text="{Binding Password}" FontFamily="Light" Width="100"/>
+                    
 
                 </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Content="Login" Command="{Binding LoginCommand}" IsEnabled="{Binding LoginBool}"/>
+                    <Button Content="Logout" Command="{Binding LogoutCommand}" IsEnabled="{Binding LogoutBool}"/>
+                    <!--<Button Content="Make Friend" Command="{Binding MakeFriendCommand}"/>-->
+
+                </StackPanel>
+                <Button Content="Sign Up" Command="{Binding SignUpCommand}" IsEnabled="{Binding LoginBool}"/>
+
+            </StackPanel>
+            <StackPanel Grid.Row="3" Orientation="Vertical"  Background="#FFCC00">
+                <!--<Border CornerRadius="25" Width="30" Height="30" Background="LightGoldenrodYellow" Margin="18,0,0,0"/>-->
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="center" >
+                    <!--<Label Content="Username" Foreground="Black" FontWeight="SemiBold" Margin="0,0,0,-13"/>
+                    <Label Content="Custom Status" Foreground="Black" FontWeight="Medium" FontSize="10" />-->
+                    <TextBox Text="{Binding FriendUid}" FontWeight="Light" Width="100"/>
+                    <!--<TextBox Text="{Binding Password}" FontFamily="Light" Width="100"/>-->
+
+
+                </StackPanel>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                    <!--<Button Content="Login" Command="{Binding LoginCommand}"/>-->
+                    <!--<Button Content="Logout"/>-->
+                    <Button Content="Make Friend" Command="{Binding MakeFriendCommand}"/>
+                    <Button Content="Refresh" Command="{Binding RefreshCommand}"/>
+
+                </StackPanel>
+                <!--<Button Content="Sign Up" Command="{Binding SignUpCommand}"/>-->
 
             </StackPanel>
 
@@ -93,8 +125,10 @@
 
             <Border>
                 <Grid HorizontalAlignment="Stretch" Margin="8">
-                    <Label Content="Some sort of header can go here" Foreground="white" FontWeight="Bold" Margin="5,0,5,0"/>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Label Content="My UID: " Foreground="white" FontWeight="Bold" Margin="5,0,5,0"/>
+                    
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Text="{Binding Uuid}" Foreground="White"/>
                         <!--<Image Width="20" Height="20" RenderOptions.BitmapScalingMode="Fant"
                                Margin="5,0,5,0"
                                Source=""/>-->
