@@ -21,6 +21,12 @@ namespace TrojanChat.MVVM.Model
             MessageText = MessageInput;
 
         }
+        public MessageModel(string MessageInput, string Color)
+        {
+            MessageText = MessageInput;
+            UsernameColor = Color;
+
+        }
     }
 }
 

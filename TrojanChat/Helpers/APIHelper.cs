@@ -95,23 +95,65 @@ namespace TrojanChat.Helpers
                 new KeyValuePair<string, string>("username", username),
                 new KeyValuePair<string, string>("password", password)
             });
-            foreach (var friend in context.Contacts)
+
+            //friend.MessageHistory.Clear();
+            var response = await ApiClient.GetAsync("http://35.90.137.151:3000/user/" + uid);
+            var raspContent = await response.Content.ReadAsStringAsync();
+            var jo = JObject.Parse(raspContent);
+            var msgList = jo["message"];
+            var updatedMessage = new ObservableCollection<MessageModel>();
+            var friendsDict = new Dictionary<string, ObservableCollection<MessageModel>>();
+            foreach (var message in msgList)
             {
-                //friend.MessageHistory.Clear();
-                var response = await ApiClient.GetAsync("http://35.90.137.151:3000/user/" + friend.UserName);
-                var raspContent = await response.Content.ReadAsStringAsync();
-                var jo = JObject.Parse(raspContent);
-                var msgList = jo["message"];
-                var updatedMessage = new ObservableCollection<MessageModel>();
-                foreach (var message in msgList)
+                var msgColor = "Gray";
+                string from = message["from"].ToString();
+                //string to = message["to"].ToString();
+                if (from == uid) //if from me
                 {
-                    var thisMsg = new MessageModel(message["content"].ToString());
-                    updatedMessage.Add(thisMsg);
-   
+                    from = message["to"].ToString();
+                    msgColor = "DarkRed";
 
                 }
-                friend.MessageHistory = updatedMessage;
 
+                if (!(friendsDict.ContainsKey(from)))
+                {
+                    friendsDict[from] = new ObservableCollection<MessageModel>();
+                    var thisMsg = new MessageModel(message["content"].ToString(), msgColor);
+                    friendsDict[from].Add(thisMsg);
+
+
+
+                }
+                else
+                {
+                    var thisMsg = new MessageModel(message["content"].ToString(), msgColor);
+                    friendsDict[from].Add(thisMsg);
+
+                }
+
+
+
+
+
+            }
+
+            // outgoing messages 
+            //foreach (var friend in context.Contacts) 
+            //{
+            //    var friend_response = await ApiClient.GetAsync("http://35.90.137.151:3000/user/" + friend.UserName);
+            //    var friend_raspContent = await response.Content.ReadAsStringAsync();
+            //    var friend_jo = JObject.Parse(raspContent);
+            //    var friend_msgList = jo["message"];
+
+            //}
+            foreach (var friend in context.Contacts)
+            {
+                if (friendsDict.ContainsKey(friend.UserName))
+                    {
+
+                    friend.MessageHistory.Clear();
+                    friend.MessageHistory = friendsDict[friend.UserName];
+                }
 
 
 
@@ -190,12 +232,14 @@ namespace TrojanChat.Helpers
                 foreach (var friend in friendlist)
                 {
                     var friendUid = friend["uid"].ToString().Replace("`","\"");
+                    var friendName = friend["username"].ToString();
                     if (uidList.Contains(friendUid))
                     {
                         continue;
                     }
                     var newFriend = new ContactModel();
                     newFriend.UserName = friendUid;
+                    newFriend.Name = friendName;
                     context.Contacts.Add(newFriend);
                     uidList.Add(friendUid);
                     

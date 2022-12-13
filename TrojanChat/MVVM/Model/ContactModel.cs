@@ -10,9 +10,10 @@ namespace TrojanChat.MVVM.Model
     public class ContactModel
     {
         public string? UserName { get; set; }
+        public string? Name { get; set; }
         public string? ImageSource { get; set; }
         public ObservableCollection<MessageModel> MessageHistory { get; set; }
-        public string? LastMessage => MessageHistory.LastOrDefault() is not null ? MessageHistory.LastOrDefault().MessageText : "";
+        public string? LastMessage => MessageHistory.Count() > 0 ? MessageHistory.LastOrDefault().MessageText : "";
         public ContactModel()
         {
             MessageHistory = new ObservableCollection<MessageModel>();

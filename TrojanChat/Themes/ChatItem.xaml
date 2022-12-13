@@ -13,7 +13,7 @@
                         </Ellipse>
                         <StackPanel>
                             <StackPanel Orientation="Horizontal">
-                            <Label Content="{Binding Username}"
+                            <Label Content="{Binding Name}"
                                    Foreground="{Binding UsernameColor}"
                                    FontWeight="SemiBold"
                                    VerticalAlignment="Center"
@@ -27,14 +27,14 @@
                             
                         </StackPanel>
                             <Border BorderThickness="2,2,2,2"
-                                BorderBrush="#767676"
+                                BorderBrush="{Binding UsernameColor}"
                                 CornerRadius="5,5,5,5">
 
 
                                     <Label Content="{Binding MessageText}"
                                    Foreground="White"
                                    FontWeight="SemiBold"
-                                   Background="#767676"
+                                   Background="{Binding UsernameColor}"
                                    BorderBrush="White"
                                    
                                    

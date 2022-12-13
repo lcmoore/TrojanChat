@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:TrojanChat" xmlns:viewmodel="clr-namespace:TrojanChat.MVVM.ViewModel"
         mc:Ignorable="d"
         Height="650" Width="1200"
-        Background="#990000"
+        Background="#36393F"
         WindowStyle="None"
         AllowsTransparency="True"
         ResizeMode="CanResizeWithGrip">
@@ -69,6 +69,7 @@
             <ListView ItemsSource="{Binding Contacts}"
                       SelectedItem="{Binding SelectedContact}"
                       Background="Transparent"
+                      
                       BorderThickness="0"
                       Grid.Row="1"
                       ItemContainerStyle="{StaticResource ContactCard}"/>

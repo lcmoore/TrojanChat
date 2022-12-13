@@ -21,14 +21,14 @@
                         <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
                             <!--this is inside the card-->
                             <!--Here pull From API Use Image Control and bind? 15:24-->
-                            <Ellipse Width="30" Height ="30">
+                            <!--<Ellipse Width="30" Height ="30">
                                 <Ellipse.Fill>
                                     <ImageBrush ImageSource="{Binding ImageSource}"/>
                                 </Ellipse.Fill>
-                            </Ellipse>
+                            </Ellipse>-->
                             <!--<Border Width="30" Height="30" Background="Blue" CornerRadius="25" />-->
                             <StackPanel>
-                                <Label Content="{Binding UserName}" Foreground="Black"/>
+                                <Label Content="{Binding Name}" Foreground="Black"/>
                                 <Label Content="{Binding LastMessage}" Foreground="Black" FontSize="10"/>
                                 
                             </StackPanel>
